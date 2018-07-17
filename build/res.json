@@ -1,0 +1,29 @@
+{
+    "text": [
+      {
+        "word": "test1",
+        "tag": "whatever1",
+        "beginOffset": 10
+      },
+      {
+        "word": "test2",
+        "tag": "whatever2",
+        "beginOffset": 20
+      },
+      {
+        "word": "test3",
+        "tag": "whatever3",
+        "beginOffset": 25
+      },
+      {
+        "word": "test4",
+        "tag": "whatever4",
+        "beginOffset": 30
+      },
+      {
+        "word": "test5",
+        "tag": "whatever5",
+        "beginOffset": 35
+      }
+    ]
+}
