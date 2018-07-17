@@ -6,7 +6,7 @@ import Word from './Word';
 class App extends Component {
   constructor(props) {
     super(props)
-    this.originalStr = "sometext10test1WHATEtest2test3test4test5test6"; //TODO: Remove once original string can be parsed
+    //this.originalStr = "sometext10test1WHATEtest2test3test4test5test6"; 
     
     this.state = {
       originalStr: "",
@@ -23,9 +23,13 @@ class App extends Component {
 
   handleSumbit = (e) =>  {
     e.preventDefault();
-    
-    fetch('/res.json', {
-      method: 'GET'
+
+    fetch('/swiftSemantic', {
+      method: 'POST',
+      headers: {
+        "content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state.originalStr)
     }).then(res => {
       return res.json();
     }).then( data => {
@@ -34,21 +38,29 @@ class App extends Component {
         isSubmitted: true
       });
     })
-    /*.then( e => {
-      console.log("original text: ", this.state.originalStr);
-      console.log("parsed text: ", this.state.parsedStr);
-    })
-    */
     .catch( err => {
-      console.log("Error in fetching data: ", err)
-    });    
+      console.log("Error in fetching data...using mock instead");
+      fetch('/res.json', {
+        method: 'GET'
+      }).then( res => {
+        return res.json();
+      }).then( data => {
+        this.setState( {
+          parsedStr: data,
+          isSubmitted: true
+        });
+      })
+      .catch (err => {
+        console.log("Error in fetching data...: ", e)
+      })
+    });
   }
 
 
   render() {
     const isSubmitted = this.state.isSubmitted;
     const parsedTextArray = this.state.parsedStr.text;
-    const originalStr = this.originalStr; //TODO: Change to this.state.originalStr
+    const originalStr = this.state.originalStr; //TODO: Change to this.state.originalStr
     let parsedText;
 
     if (isSubmitted) {
