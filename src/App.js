@@ -38,6 +38,7 @@ class App extends Component {
         isSubmitted: true
       });
     })
+    /*
     .catch( err => {
       console.log("Error in fetching data...using mock instead");
       fetch('/res.json', {
@@ -50,10 +51,10 @@ class App extends Component {
           isSubmitted: true
         });
       })
+      */
       .catch (err => {
         console.log("Error in fetching data...: ", e)
-      })
-    });
+      });
   }
 
 
