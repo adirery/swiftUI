@@ -31,12 +31,10 @@ class App extends Component {
       },
       body: JSON.stringify(JSON.parse(this.state.originalStr))
     }).then(res => {
-      console.log("response: ", res);
       return res.json();
     }).then( data => {
-      console.log("response parsed: ", data);
       this.setState( {
-        parsedStr: data,
+        parsedStr: data.data,
         isSubmitted: true
       });
     })
@@ -48,7 +46,7 @@ class App extends Component {
         return res.json();
       }).then( data => {
         this.setState( {
-          parsedStr: data,
+          parsedStr: data.data,
           isSubmitted: true
         });
       })
@@ -61,16 +59,15 @@ class App extends Component {
 
   render() {
     const isSubmitted = this.state.isSubmitted;
-    const parsedTextArray = this.state.parsedStr.text;
-    const originalStr = this.state.originalStr; //TODO: Change to this.state.originalStr
+    const parsedTextArray = this.state.parsedStr;
+    const originalStr = this.state.originalStr;
     let parsedText;
 
     if (isSubmitted) {
       let parseText = () => {
         let index = [0];
-        
         let temp = parsedTextArray.map((o, k) => {
-          index.push(o.beginOffset + o.word.length);
+          index.push(o.beginOffset + o.text.length);
           return <Word key={o.beginOffset} wordObject={o} originalStr={originalStr} index={index[k]} />;
         });
         
