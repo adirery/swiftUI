@@ -29,7 +29,7 @@ class App extends Component {
       headers: {
         "content-Type": "application/json"
       },
-      body: JSON.stringify(this.state.originalStr)
+      body: this.state.originalStr
     }).then(res => {
       return res.json();
     }).then( data => {
