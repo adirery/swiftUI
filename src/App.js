@@ -24,11 +24,11 @@ class App extends Component {
   handleSumbit = (e) =>  {
     e.preventDefault();
     console.log("body: ", this.state.originalStr);
-    
+
     fetch('/swiftSemantic', {
       method: 'POST',
       headers: {
-        "content-Type": "application/json"
+        "content-Type": "text/plain"
       },
       body: this.state.originalStr
     }).then(res => {
