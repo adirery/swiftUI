@@ -31,8 +31,10 @@ class App extends Component {
       },
       body: JSON.stringify(JSON.parse(this.state.originalStr))
     }).then(res => {
+      console.log("response: ", res);
       return res.json();
     }).then( data => {
+      console.log("response parsed: ", data);
       this.setState( {
         parsedStr: data,
         isSubmitted: true
