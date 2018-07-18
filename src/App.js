@@ -23,13 +23,13 @@ class App extends Component {
 
   handleSumbit = (e) =>  {
     e.preventDefault();
-
+    console.log("original string: ", JSON.parse(this.state.originalStr)) ;
     fetch('/swiftSemantic', {
       method: 'POST',
       headers: {
         "content-Type": "application/json"
       },
-      body: this.state.originalStr
+      body: JSON.parse(this.state.originalStr)
     }).then(res => {
       return res.json();
     }).then( data => {
